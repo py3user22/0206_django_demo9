@@ -17,8 +17,5 @@ urlpatterns = [
     #203 book reservations add
     path('book/', views.book, name="book"),
     path('bookings/', views.bookings, name="bookings"),
-    path('reservations/', views.bookings, name="reservations"),
-
-
 
 ]

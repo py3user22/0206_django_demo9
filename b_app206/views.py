@@ -12,8 +12,6 @@ from django.http import HttpResponse
 def home(request):
     return render(request, 'index.html',{})
 
-
-
 def about(request):
     return render(request, 'about.html', {})
 
@@ -62,7 +60,7 @@ def bookings(request):
         else:
             return HttpResponse("{'error':1}", content_type='application/json')
 
-    date = request.GET.get('data', datetime.today().date())
+    date = request.GET.get('date', datetime.today().date())
 
     bookings = Booking.objects.all().filter(reservation_date=date)
     booking_json = serializers.serialize('json', bookings)

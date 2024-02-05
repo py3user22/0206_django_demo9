@@ -17,13 +17,16 @@
               <input type="text" placeholder="Your Name" maxlength="200" required="" id="first_name">
             </p>
             <p>
-            <!-- Step 9: Part one -->
-
+            <!-- Step 9: Part one
+            replicate the p tag above for reservation_date
+            -->
+              <label for="rdate">Reservation Date:</label>
+              <input type="date" placeholder="Pick a date" required="" id="rdate">
 
 
 
             </p>
-      
+
             <p>
               <label for="reservation_slot">Reservation time:</label>
               <select id="reservation_slot">
@@ -52,6 +55,12 @@
 </section>
 <script>
 
+                /* lab2 step11 -------------- */
+  console.log("Hola Mundo")
+  document.getElementById('id_reservation_date')
+  Booking.objects.filter(reservation_date__type="date")
+                /* lab2 step11 end -----  */
+
   const date = new Date()
   document.getElementById('reservation_date').value = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate().toString().padStart(2, "0")}`
 
@@ -59,24 +68,45 @@
   getBookings()
 
 
-  /*  Step 10: Part two */
+                /* -------- Step 10: Part two > addEventListener() function to reservation_date--------------------------- */
+  var Button3 = document.getElementById('reservation_date');
 
+  Button3.addEventListener("change", function() { {getBookings()}; });
+
+                /* -------- end Step 10 ------------------------------------ */
 
   function getBookings() {
     let reserved_slots = []
     const date = document.getElementById('reservation_date').value
     document.getElementById('today').innerHTML = date
-    
+
     fetch("{% url 'bookings' %}" + '?date=' + date)
       .then(r => r.json())
       .then(data => {
         reserved_slots = []
-        bookings = ''
-        
-        /* Step 11: Part three */
+        bookings = ' `<p>${item.fields.first_name} - ${formatTime(item.fields.reservation_slot)}</p>`'
+
+              /* Step 11: Part three -------------- */
+  const data = []
+
+  for (var item of data) {
+      console.log(items.fields);
+      reserved_slots.push(item.fields.reservation_slot);
+  };
+              /* Step 11: Part three end -------- */
 
 
-        /* Step 12: Part four  */
+              /* Step 12: Part four ---------------------- */
+  var slot_options = '<option value="0" disabled>Select time</option>'
+
+  for (i=11, i<20, i++) {
+      const label = formatTime(i);
+      if reserved.slots.includes(i) == True:
+          slot_options += `<option value=${i} disabled>${label}</option>`
+      else:
+          slot_options += `<option value=${i}>${label}</option>`
+  };
+              /* Step 12: Part four  end ---------------- */
 
         
         document.getElementById('reservation_slot').innerHTML = slot_options
